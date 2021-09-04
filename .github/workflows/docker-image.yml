@@ -17,7 +17,7 @@ jobs:
       #name: Build the Docker image
       ##run: docker build . --file Dockerfile --tag eriksongm/master-report:$(date +%s)
       #run: docker build . --file src/MasterReport.UI/Dockerfile --tag eriksongm/master-report:${{ secrets.MAJOR }}.${{ secrets.MINOR }}
-    - run: echo $DAY_OF_WEEK + 1    
+    - run: echo echo $((${{ secrets.MINOR }}+1))    
     -
       name: Login to DockerHub
       uses: docker/login-action@v1 
@@ -31,6 +31,6 @@ jobs:
       uses: hmanzur/actions-set-secret@v2.0.0
       with:
         name: 'MINOR'
-        value: '5'
+        value: $((${{ secrets.MINOR }}+1))
         repository: EriksonGM/MasterReport
         token: ${{ secrets.REPO_ACCESS_TOKEN }}
