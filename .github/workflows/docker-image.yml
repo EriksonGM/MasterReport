@@ -17,6 +17,7 @@ jobs:
       name: Build the Docker image
       ##run: docker build . --file Dockerfile --tag eriksongm/master-report:$(date +%s)
       run: docker build . --file src/MasterReport.UI/Dockerfile --tag eriksongm/master-report:${{ secrets.MAJOR }}.${{ secrets.MINOR }}
+    - run: echo $DAY_OF_WEEK    
     -
       name: Login to DockerHub
       uses: docker/login-action@v1 
