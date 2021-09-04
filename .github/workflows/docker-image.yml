@@ -9,8 +9,10 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    steps:
-    #- uses: actions/checkout@v2
+    env:
+      DAY_OF_WEEK: Mon
+    steps:    
+    - uses: actions/checkout@v2
     -
       name: Build the Docker image
       ##run: docker build . --file Dockerfile --tag eriksongm/master-report:$(date +%s)
@@ -28,6 +30,6 @@ jobs:
       uses: hmanzur/actions-set-secret@v2.0.0
       with:
         name: 'MINOR'
-        value: 'Lorem ipsun dolor simit'
+        value: '5'
         repository: EriksonGM/MasterReport
         token: ${{ secrets.REPO_ACCESS_TOKEN }}
