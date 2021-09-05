@@ -36,11 +36,14 @@ namespace MasterReport.UI
                 options.UseSqlite($"Data Source={Path.Combine(Environment.CurrentDirectory, "db.db")}");
             });
             
+
+
             services.AddTransient<IEmailAccountService, EmailAccountService>();
+            services.AddTransient<IStatisticsService, StatisticsService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, DataContext db)
         {
             if (env.IsDevelopment())
             {
@@ -50,6 +53,9 @@ namespace MasterReport.UI
             {
                 app.UseExceptionHandler("/Home/Error");
             }
+
+            db.Database.Migrate();
+
             app.UseStaticFiles();
 
             app.UseRouting();

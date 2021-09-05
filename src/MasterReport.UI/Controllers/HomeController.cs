@@ -6,21 +6,25 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using MasterReport.Services;
 
 namespace MasterReport.UI.Controllers
 {
     public class HomeController : BaseController
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IStatisticsService _statistics;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IStatisticsService statistics)
         {
             _logger = logger;
+            _statistics = statistics;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var res = await _statistics.GetHomeStatistics();
+            return View(res);
         }
         
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

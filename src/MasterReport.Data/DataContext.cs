@@ -54,7 +54,7 @@ namespace MasterReport.Data
             mb.Entity<User>()
                 .HasData(new User
                 {
-                    UserId = Guid.NewGuid(),
+                    UserId = Guid.Parse("00000000-0000-0000-0000-000000000001"),
                     Name = "Admin",
                     Email = "admin@admin.com",
                     Password = "$2a$14$4yrM/g9wcEbukfdtmvB4KOiZPLut5.VPX.MAsYUkNzCV/hyRB3DA2", //changeme
