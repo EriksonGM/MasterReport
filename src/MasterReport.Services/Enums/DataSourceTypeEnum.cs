@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace MasterReport.Services.Enum
+namespace MasterReport.Services.Enums
 {
     public enum DataSourceTypeEnum
     {

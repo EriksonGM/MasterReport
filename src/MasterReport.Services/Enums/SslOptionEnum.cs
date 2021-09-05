@@ -1,4 +1,4 @@
-﻿namespace MasterReport.Services.Enum
+﻿namespace MasterReport.Services.Enums
 {
     public enum SslOptionEnum
     {
