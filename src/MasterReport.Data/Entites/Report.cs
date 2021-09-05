@@ -19,16 +19,14 @@ namespace MasterReport.Data.Entites
         [Required]
         [MaxLength(150)]
         public string Name { get; set; }
-
+        
         [MaxLength(500)]
         public string Description { get; set; }
-
+        public DateTime? LastExecution { get; set; }
+        public DateTime? NextExecution { get; set; }
         public bool Active { get; set; }
-
         public bool Force { get; set; }
-
         public ICollection<ExecutionHistory> History { get; set; }
-
         public ICollection<Destiny> Destinies { get; set; }
     }
 }

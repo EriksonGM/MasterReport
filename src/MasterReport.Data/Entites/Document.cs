@@ -22,7 +22,7 @@ namespace MasterReport.Data.Entites
         [MaxLength(8000)]
         public string Query { get; set; }
 
-        public int DataSourceId { get; set; }
+        public Guid DataSourceId { get; set; }
 
         [ForeignKey("DataSourceId")]
         public DataSource DataSource { get; set; }

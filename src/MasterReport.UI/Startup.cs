@@ -5,8 +5,12 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using MasterReport.Data;
+using MasterReport.Services;
+using Microsoft.EntityFrameworkCore;
 
 namespace MasterReport.UI
 {
@@ -23,6 +27,16 @@ namespace MasterReport.UI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            //services.AddEntityFrameworkSqlite()
+            //    .AddDbContext<DataContext>();
+
+            services.AddDbContext<DataContext>(options =>
+            {
+                options.UseSqlite($"Data Source={Path.Combine(Environment.CurrentDirectory, "db.db")}");
+            });
+            
+            services.AddTransient<IEmailAccountService, EmailAccountService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

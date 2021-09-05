@@ -1,6 +1,10 @@
 ﻿using System;
+using System.IO;
+using System.Linq;
 using MasterReport.Data.Entites;
+using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace MasterReport.Data
 {
@@ -10,6 +14,23 @@ namespace MasterReport.Data
         {
 
         }
+
+        /*
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            var connectionStringBuilder = new SqliteConnectionStringBuilder { DataSource = "MyDb.db" };
+
+            var connectionString = connectionStringBuilder.ToString();
+
+            var connection = new SqliteConnection(connectionString);
+
+            optionsBuilder.UseSqlite(connection);
+        }
+        */
+        //protected override void OnConfiguring(DbContextOptionsBuilder options)
+        //{
+        //    options.UseSqlite($"Data Source={Path.Combine(Environment.CurrentDirectory, "db.db")}");
+        //}
 
         protected override void OnModelCreating(ModelBuilder mb)
         {
@@ -33,7 +54,7 @@ namespace MasterReport.Data
             mb.Entity<User>()
                 .HasData(new User
                 {
-                    UserId = Guid.Empty,
+                    UserId = Guid.NewGuid(),
                     Name = "Admin",
                     Email = "admin@admin.com",
                     Password = "$2a$14$4yrM/g9wcEbukfdtmvB4KOiZPLut5.VPX.MAsYUkNzCV/hyRB3DA2", //changeme
