@@ -4,4 +4,18 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\MasterReport.Data\MasterReport.Data.csproj" />
+    <ProjectReference Include="..\MasterReport.Models\MasterReport.Models.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MailKit" Version="2.15.0" />
+    <PackageReference Include="MimeKit" Version="2.15.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Exceptions\" />
+  </ItemGroup>
+
 </Project>
