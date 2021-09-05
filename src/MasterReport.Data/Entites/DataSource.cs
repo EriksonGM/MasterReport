@@ -18,6 +18,7 @@ namespace MasterReport.Data.Entites
         [ForeignKey("DataSourceTypeId")]
         public DataSourceType DataSourceType { get; set; }
 
+        [MaxLength(8000)]
         public string ConnectionString { get; set; }
     }
 }

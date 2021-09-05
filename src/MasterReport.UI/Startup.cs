@@ -40,6 +40,7 @@ namespace MasterReport.UI
 
             services.AddTransient<IEmailAccountService, EmailAccountService>();
             services.AddTransient<IStatisticsService, StatisticsService>();
+            services.AddTransient<IDataSourceService, DataSourceService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

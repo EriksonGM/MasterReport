@@ -1,10 +1,9 @@
-﻿
+﻿@using Humanizer
+@model MasterReport.Models.Paging.PaginatedFilter<MasterReport.Models.DataSourceDTO>
 @{
     ViewData["Title"] = "Data Sources";
     ViewData["Icon"] = "dripicons-stack";
 }
-
-<h1>Index</h1>
 
 @section Menu
 {
@@ -14,8 +13,78 @@
                 <i class="ti-settings mr-1"></i> Settings
             </button>
             <div class="dropdown-menu dropdown-menu-right dropdown-menu-animated">
-                <a class="dropdown-item" href="#">Create New</a>
+                <a class="dropdown-item" asp-controller="DataSources" asp-action="Edit">Create New</a>
             </div>
         </div>
     </div>
 }
+
+<form asp-action="Index" asp-controller="DataSources" method="get" class="card">
+    <div class="card-body">
+        <
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th></th>
+                <th>Name</th>
+                <th>Data Source Type</th>
+                <th>Connection String</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var d in Model)
+            {
+                <tr>
+                    <td>
+                        <div class="btn-group m-b-10">
+                            <button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-cog"></i></button>
+                            <div class="dropdown-menu" style="">
+                                <a class="dropdown-item" href="#">Action</a>
+                                <a class="dropdown-item" href="#">Another action</a>
+                                <a class="dropdown-item" href="#">Something else here</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#">Separated link</a>
+                            </div>
+                        </div>
+                    </td>
+                    <td>@d.Name</td>
+                    <td>@d.DataSourceName</td>
+                    <td>@d.ConnectionString.Truncate(100)</td>
+                </tr>
+            }
+            </tbody>
+        </table>
+        <div class="row">
+            <div class="col-md-6"></div>
+            <div class="col-md-6 ">
+                <nav class="float-right">
+                    <ul class="pagination">
+                        <li class="page-item @(Model.HasPreviousPage ? "" : "disabled")">
+                            <button class="page-link">Previous</button>
+                        </li>
+
+                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item @(Model.HasNextPage ? "" : "disabled")">
+                            <a class="page-link" href="#">Next</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
+        </div>
+    </div>
+</form>
+
+
+<ul>
+    <li>HasPreviousPage - @Model.HasPreviousPage</li>
+    <li>HasNextPage - @Model.HasNextPage</li>
+    <li>Filter - @Model.Filter</li>
+    <li>PageSize - @Model.PageSize</li>
+    <li>Page - @Model.Page</li>
+    <li>TotalPages - @Model.TotalPages</li>
+    <li>TotalResults - @Model.TotalResults</li>
+    <li>HasItems - @Model.HasItems</li>
+</ul>
